@@ -17,7 +17,7 @@ func main() {
 	}
 
 	defer connection.Close()
-	fmt.Println("Listening on port 8080")
+	fmt.Println("Listening on port 8080...")
 	for{
 		c,err:=connection.Accept()
 		if err!=nil{

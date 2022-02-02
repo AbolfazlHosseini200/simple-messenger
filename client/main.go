@@ -27,10 +27,13 @@ go Read(connection)
 		fmt.Println("enter message:")
 		for  {
 			msg,_:=bufio.NewReader(os.Stdin).ReadString('\n')
-			if msg == "exit" {
+			if msg[:len(msg)-1] == "exit" {
+				break
+			}else if msg[:len(msg)-1] == "refresh"{
+				fmt.Fprintf(connection,"refresh#"+name)
 				break
 			}
-			fmt.Fprintf(connection,"send#"+msg[:len(msg)-1]+"#"+dst )
+			fmt.Fprintf(connection,"send#"+msg[:len(msg)-1]+"#"+dst[:len(dst)-1]+"#" +name)
 		}
 	}
 
