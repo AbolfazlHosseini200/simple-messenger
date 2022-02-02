@@ -26,6 +26,7 @@ func main() {
 		var test Client
 		test.con = c
 		test.name,err=bufio.NewReader(c).ReadString('\n')
+		test.name=test.name[:len(test.name)-1]
 		if err!=nil {
 			fmt.Println(err)
 			return

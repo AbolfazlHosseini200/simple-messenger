@@ -11,7 +11,7 @@ import (
 func main() {
 fmt.Println("trying to connect to server in a second...")
 time.Sleep(time.Second)
-connection, err:=net.Dial("tcp","localhost:8080")
+connection, err:=net.Dial("tcp","2.tcp.ngrok.io:15934")
 if err!=nil{
 	fmt.Println(err)
 	return
@@ -24,6 +24,7 @@ go Read(connection)
 	for  {
 		fmt.Println("enter destination:")
 		dst,_:=bufio.NewReader(os.Stdin).ReadString('\n')
+		dst = dst[:len(dst)-1]
 		fmt.Println("enter message:")
 		for  {
 			msg,_:=bufio.NewReader(os.Stdin).ReadString('\n')
@@ -33,7 +34,7 @@ go Read(connection)
 				fmt.Fprintf(connection,"refresh#"+name)
 				break
 			}
-			fmt.Fprintf(connection,"send#"+msg[:len(msg)-1]+"#"+dst[:len(dst)-1]+"#" +name)
+			fmt.Fprintf(connection,"send#"+msg[:len(msg)-1]+"#"+dst+"#" +name)
 		}
 	}
 
